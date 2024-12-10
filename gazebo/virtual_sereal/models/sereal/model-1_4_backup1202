@@ -1,0 +1,173 @@
+<sdf version='1.7'>
+  <model name='sereal'>
+    <link name='base_link'>
+      <inertial>
+        <pose>1e-06 0.012724 -0.019666 0 -0 0</pose>
+        <mass>0.54074</mass>
+        <inertia>
+          <ixx>0.00092221</ixx>
+          <ixy>5.5142e-08</ixy>
+          <ixz>2.3138e-08</ixz>
+          <iyy>0.00081245</iyy>
+          <iyz>0.00015388</iyz>
+          <izz>0.00063449</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__camera_link_collision_1'>
+        <pose>0.003825 0.11135 0.16857 1.2039 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/camera_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__camera_link_visual_1'>
+        <pose>0.003825 0.11135 0.16857 1.2039 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/camera_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_joint' type='revolute'>
+      <pose relative_to='base_link'>0.11775 0.020926 -0.11049 1.5708 -0 1.5708</pose>
+      <parent>base_link</parent>
+      <child>left_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>0.142</effort>
+          <velocity>3.142</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_link'>
+      <pose relative_to='left_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5e-06 -1.7e-05 0.015607 0 -0 0</pose>
+        <mass>0.11084</mass>
+        <inertia>
+          <ixx>8.2649e-05</ixx>
+          <ixy>-7.9552e-09</ixy>
+          <ixz>2.4325e-09</ixz>
+          <iyy>8.2626e-05</iyy>
+          <iyz>7.8198e-09</iyz>
+          <izz>0.00015396</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/left_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/left_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.11775 0.021588 -0.10948 1.5708 -0 1.5708</pose>
+      <parent>base_link</parent>
+      <child>right_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>0.142</effort>
+          <velocity>3.142</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_link'>
+      <pose relative_to='right_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5e-06 -1.7e-05 -0.015607 0 -0 0</pose>
+        <mass>0.11084</mass>
+        <inertia>
+          <ixx>8.2649e-05</ixx>
+          <ixy>-7.955e-09</ixy>
+          <ixz>-2.4325e-09</ixz>
+          <iyy>8.2626e-05</iyy>
+          <iyz>-7.8198e-09</iyz>
+          <izz>0.00015396</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/right_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/right_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <!-- Differential Drive Plugin 추가 -->
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <ros>
+        <namespace>/</namespace> <!-- ROS 네임스페이스 (필요하면 변경 가능) -->
+        <remapping>cmd_vel:=/demo/cmd_demo</remapping> <!-- cmd_vel 토픽 리매핑 -->
+      </ros>
+      <left_joint>left_joint</left_joint> <!-- 왼쪽 바퀴 -->
+      <right_joint>right_joint</right_joint> <!-- 오른쪽 바퀴 -->
+      <wheel_separation>0.25</wheel_separation> <!-- 바퀴 간 거리 (m) -->
+      <wheel_radius>0.05</wheel_radius> <!-- 바퀴 반지름 (m) -->
+      <wheel_diameter>0.2</wheel_diameter>  
+      <update_rate>50</update_rate> <!-- 업데이트 주기 (Hz) -->
+    </plugin>
+  </model>
+</sdf>

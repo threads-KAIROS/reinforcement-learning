@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="sereal">
+  <link
+    name="base_link">
+    <inertial><?xml version="1.0"?>
+<robot name="sereal">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/> <!-- 질량 중심을 위로 이동 -->
+      <mass value="10.0"/> <!-- 적절한 질량 설정 -->
+      <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/> <!-- 관성 값 -->
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/base_link.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Left Wheel Link -->
+  <link name="left_link">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/> <!-- 질량 중심을 위로 이동 -->
+      <mass value="10.0"/> <!-- 적절한 질량 설정 -->
+      <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/> <!-- 관성 값 -->
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" /> <!-- 메쉬가 로컬 좌표를 따르게 만듦 -->
+      <geometry>
+        <mesh filename="/home/dh/ros2_ws/install/virtual_sereal/share/virtual_sereal/models/sereal/meshes/left_link.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Right Wheel Link -->
+  <link name="right_link">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/> <!-- 질량 중심을 위로 이동 -->
+      <mass value="10.0"/> <!-- 적절한 질량 설정 -->
+      <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/> <!-- 관성 값 -->
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" /> <!-- 메쉬가 로컬 좌표를 따르게 만듦 -->
+      <geometry>
+        <mesh filename="/home/dh/ros2_ws/install/virtual_sereal/share/virtual_sereal/models/sereal/meshes/right_link.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Left Joint -->
+  <joint name="left_joint" type="continuous">
+    <origin xyz="0.11775 0.11049 0.020926" rpy="0 1.5708 0" />
+    <parent link="base_link" />
+    <child link="left_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- Right Joint -->
+  <joint name="right_joint" type="continuous">
+    <origin xyz="-0.11775 0.10948 0.021588" rpy="0 1.5708 0" />
+    <parent link="base_link" />
+    <child link="right_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+</robot>
+
+    <origin
+      xyz="1.019E-06 0.012724 -0.019666"
+      rpy="0 0 0" />
+    <mass
+      value="0.54074" />
+    <inertia
+      ixx="0.00092221"
+      ixy="5.5142E-08"
+      ixz="2.3138E-08"
+      iyy="0.00081245"
+      iyz="0.00015388"
+      izz="0.00063449" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="left_link">
+    <inertial>
+      <origin
+        xyz="-5.2304E-06 -1.6992E-05 0.015607"
+        rpy="0 0 0" />
+      <mass
+        value="0.11084" />
+      <inertia
+        ixx="8.2649E-05"
+        ixy="-7.9552E-09"
+        ixz="2.4325E-09"
+        iyy="8.2626E-05"
+        iyz="7.8198E-09"
+        izz="0.00015396" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.62745 0.62745 0.62745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_joint"
+    type="continuous">
+    <origin
+      xyz="0.11775 0.020926 -0.11049"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0.142"
+      velocity="3.142" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="right_link">
+    <inertial>
+      <origin
+        xyz="-5.2304E-06 -1.6992E-05 -0.015607"
+        rpy="0 0 0" />
+      <mass
+        value="0.11084" />
+      <inertia
+        ixx="8.2649E-05"
+        ixy="-7.955E-09"
+        ixz="-2.4325E-09"
+        iyy="8.2626E-05"
+        iyz="-7.8198E-09"
+        izz="0.00015396" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.62745 0.62745 0.62745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_joint"
+    type="continuous">
+    <origin
+      xyz="-0.11775 0.021588 -0.10948"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0.142"
+      velocity="3.142" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="camera_link">
+    <inertial>
+    <origin xyz="0 0 0.5" rpy="0 0 0"/> <!-- 질량 중심을 위로 이동 -->
+    <mass value="10.0"/> <!-- 적절한 질량 설정 -->
+    <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0"/> <!-- 관성 값 -->
+  </inertial>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/dh/ros2_ws/src/virtual_sereal/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.003825 0.11135 0.16857"
+      rpy="1.2039 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

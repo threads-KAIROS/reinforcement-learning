@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot name="sereal">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/dh/ros2_ws/install/virtual_sereal/share/virtual_sereal/models/sereal/meshes/base_link.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Left Wheel Link -->
+  <link name="left_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" /> <!-- 메쉬가 로컬 좌표를 따르게 만듦 -->
+      <geometry>
+        <mesh filename="/home/dh/ros2_ws/install/virtual_sereal/share/virtual_sereal/models/sereal/meshes/left_link.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Right Wheel Link -->
+  <link name="right_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" /> <!-- 메쉬가 로컬 좌표를 따르게 만듦 -->
+      <geometry>
+        <mesh filename="/home/dh/ros2_ws/install/virtual_sereal/share/virtual_sereal/models/sereal/meshes/right_link.STL" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Left Joint -->
+  <joint name="left_joint" type="continuous">
+    <origin xyz="0.11775 0.11049 0.020926" rpy="0 1.5708 0" />
+    <parent link="base_link" />
+    <child link="left_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Right Joint -->
+  <joint name="right_joint" type="continuous">
+    <origin xyz="-0.11775 0.10948 0.021588" rpy="0 1.5708 0" />
+    <parent link="base_link" />
+    <child link="right_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+</robot>

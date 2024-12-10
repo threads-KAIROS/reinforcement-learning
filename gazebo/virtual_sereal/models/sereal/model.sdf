@@ -1,0 +1,298 @@
+<?xml version="1.0" ?>
+<sdf version='1.7'>
+  <model name='sereal'>
+    <!-- Model's initial pose -->
+    <pose>0 0 0.06 0 0 0</pose> <!-- Lifted by 0.06m along the Z-axis -->
+
+    <!-- Base Link -->
+    <link name='base_link'>
+      <inertial>
+        <pose>1e-06 0.012724 -0.019666 0 -0 0</pose>
+        <mass>6</mass>
+        <inertia>
+          <ixx>0.00092221</ixx>
+          <ixy>5.5142e-08</ixy>
+          <ixz>2.3138e-08</ixz>
+          <iyy>0.00081245</iyy>
+          <iyz>0.00015388</iyz>
+          <izz>0.00063449</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__camera_link_collision_1'>
+        <pose>0.003825 0.11135 0.16857 1.2039 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/camera_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__camera_link_visual_1'>
+        <pose>0.003825 0.11135 0.16857 1.2039 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/camera_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- IMU Link -->
+    <link name="imu_link">
+      <pose>0 0 0.08 0 0 0</pose> <!-- Positioned 0.08m above base_link along Z-axis -->
+      <inertial>
+        <mass>0.05</mass> <!-- Assumed mass of the IMU -->
+        <inertia>
+          <ixx>0.0001</ixx>
+          <iyy>0.0001</iyy>
+          <izz>0.0001</izz>
+        </inertia>
+      </inertial>
+      <visual name="imu_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size> <!-- Arbitrary size of the IMU -->
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.6 0.6 0.6 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- IMU Sensor placed inside imu_link -->
+      <sensor name="imu_sensor" type="imu">
+        <always_on>1</always_on>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>1</visualize>
+        <update_rate>50.0</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0002</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0002</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0002</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.017</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.017</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.017</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+          <orientation>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0001</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0001</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.0001</stddev>
+              </noise>
+            </z>
+          </orientation>
+        </imu>
+        <plugin name="imu_sensor_plugin" filename="libgazebo_ros_imu_sensor.so">
+          <ros>
+            <namespace>/</namespace>
+            <remapping>imu/data:=/imu_sensor_plugin/out</remapping>
+          </ros>
+          <bodyName>imu_link</bodyName>
+          <update_rate>0.0001</update_rate>
+          <gaussian_noise>0.0</gaussian_noise>
+        </plugin>
+      </sensor>
+    </link>
+
+    <!-- Fixed Joint to Attach imu_link to base_link -->
+    <joint name="imu_link_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>imu_link</child>
+      <pose>0 0 0.08 0 0 0</pose> <!-- Positioned 0.08m above base_link -->
+    </joint>
+
+    <!-- Left Wheel Joint -->
+    <joint name='left_joint' type='revolute'>
+      <pose relative_to='base_link'>0.11775 0.020926 -0.11049 1.5708 -0 1.5708</pose>
+      <parent>base_link</parent>
+      <child>left_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>0.142</effort>
+          <velocity>3.142</velocity>
+          <lower>0</lower>
+          <upper>6.283185</upper>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- Left Wheel Link -->
+    <link name='left_link'>
+      <pose relative_to='left_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5e-06 -1.7e-05 0.015607 0 -0 0</pose>
+        <mass>0.11084</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/left_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/left_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Right Wheel Joint -->
+    <joint name='right_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.11775 0.021588 -0.10948 1.5708 -0 1.5708</pose>
+      <parent>base_link</parent>
+      <child>right_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>0.142</effort>
+          <velocity>3.142</velocity>
+            <lower>0</lower>
+            <upper>6.283185</upper>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- Right Wheel Link -->
+    <link name='right_link'>
+      <pose relative_to='right_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-5e-06 -1.7e-05 -0.015607 0 -0 0</pose>
+        <mass>0.11084</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/right_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/dh/ros2_ws/src/virtual_sereal/meshes/right_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- Differential Drive Plugin -->
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <ros>
+        <namespace>/</namespace> <!-- ROS namespace (change if needed) -->
+        <remapping>cmd_vel:=/demo/cmd_demo</remapping> <!-- Remap cmd_vel topic -->
+      </ros>
+      <left_joint>left_joint</left_joint> <!-- Left wheel joint -->
+      <right_joint>right_joint</right_joint> <!-- Right wheel joint -->
+      <wheel_separation>0.25</wheel_separation> <!-- Distance between wheels (m) -->
+      <wheel_radius>0.05</wheel_radius> <!-- Wheel radius (m) -->
+      <wheel_diameter>0.2</wheel_diameter>
+      <update_rate>50</update_rate> <!-- Update rate (Hz) -->
+    </plugin>
+  </model>
+</sdf>
