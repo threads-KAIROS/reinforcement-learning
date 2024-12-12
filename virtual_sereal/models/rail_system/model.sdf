@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="rail_system">
+    <static>true</static>
+    <link name="rail">
+      <visual name="rail_visual">
+        <geometry>
+          <box>
+            <size>10 0.1 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.7 0.7 0.7 1</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
+        </material>
+      </visual>
+      <collision name="rail_collision">
+        <geometry>
+          <box>
+            <size>10 0.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
